@@ -9,10 +9,14 @@ A dark theme for OpenCode inspired by the Gruvbox color palette, featuring Durha
 - **Gruvbox-inspired colors** for syntax highlighting
 - **Carefully crafted diff view** with clear add/delete colors
 - **Markdown styling** optimized for readability
+- **Dark-only theme** optimized for dark mode (light values exist for graceful fallback)
 
 ## Color Palette
 
+For detailed color source documentation, see [THEME_PALETTE.md](THEME_PALETTE.md).
+
 ### Core Colors
+
 - Background: Pure black (#000000)
 - Text: Off-white (#f5f5f0)
 - Primary Accent: Durham purple (#B347BF)
@@ -21,6 +25,7 @@ A dark theme for OpenCode inspired by the Gruvbox color palette, featuring Durha
 - Warning: Yellow (#EBCB8B)
 
 ### Syntax Highlighting
+
 - Keywords: Yellow
 - Functions: Pink
 - Strings: Green
@@ -67,6 +72,9 @@ echo "Theme installed! Add '\"theme\": \"comphy-gruvbox\"' to ~/.config/opencode
 ### Method 1: Direct Download from GitHub
 
 ```bash
+# Create themes directory if needed
+mkdir -p ~/.config/opencode/themes
+
 # Download the theme file directly
 curl -o ~/.config/opencode/themes/comphy-gruvbox.json \
   https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json
@@ -77,6 +85,7 @@ wget -P ~/.config/opencode/themes/ \
 ```
 
 Then update your OpenCode configuration (`~/.config/opencode/opencode.json`):
+
 ```json
 {
   "theme": "comphy-gruvbox"

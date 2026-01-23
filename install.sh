@@ -24,12 +24,24 @@ echo ""
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_THEME="${SCRIPT_DIR}/.opencode/themes/${THEME_NAME}.json"
+REMOTE_THEME_URL="https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/.opencode/themes/${THEME_NAME}.json"
 
-# Check if source theme exists
+# Check if source theme exists locally, otherwise download from GitHub
 if [[ ! -f "${SOURCE_THEME}" ]]; then
-    echo -e "${RED}✗ Error: Theme file not found at ${SOURCE_THEME}${NC}"
-    echo -e "${YELLOW}  Make sure you're running this script from the repository directory.${NC}"
-    exit 1
+    echo -e "${YELLOW}→ Theme not found locally, downloading from GitHub...${NC}"
+    # Create temp file for download
+    TEMP_THEME=$(mktemp)
+    trap 'rm -f "$TEMP_THEME"' EXIT
+
+    if curl -fsSL "${REMOTE_THEME_URL}" -o "${TEMP_THEME}" 2>/dev/null; then
+        SOURCE_THEME="${TEMP_THEME}"
+        echo -e "${GREEN}✓ Downloaded theme from GitHub${NC}"
+    else
+        echo -e "${RED}✗ Error: Could not download theme from GitHub${NC}"
+        echo -e "${YELLOW}  Check your internet connection or clone the repository:${NC}"
+        echo -e "${YELLOW}  git clone https://github.com/VatsalSy/CoMPhy-themes.git${NC}"
+        exit 1
+    fi
 fi
 
 # Create OpenCode config directory if it doesn't exist
@@ -80,11 +92,28 @@ else
         read -p "Update theme to comphy-gruvbox? [y/N] " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            # Update theme using jq
+            # Create backup before modifying config
+            BACKUP_FILE="${CONFIG_FILE}.bak.$(date +%Y%m%d_%H%M%S)"
+            if ! cp "${CONFIG_FILE}" "${BACKUP_FILE}"; then
+                echo -e "${RED}✗ Failed to create backup${NC}"
+                exit 1
+            fi
+            echo -e "${YELLOW}→ Backup created: ${BACKUP_FILE}${NC}"
+
+            # Update theme using jq with temp file cleanup
             TMP_FILE=$(mktemp)
-            jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" > "${TMP_FILE}"
-            mv "${TMP_FILE}" "${CONFIG_FILE}"
-            echo -e "${GREEN}✓ Config updated to use comphy-gruvbox theme${NC}"
+            trap 'rm -f "$TMP_FILE"' EXIT
+            if jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" > "${TMP_FILE}" 2>/dev/null; then
+                mv "${TMP_FILE}" "${CONFIG_FILE}"
+                trap - EXIT
+                echo -e "${GREEN}✓ Config updated to use comphy-gruvbox theme${NC}"
+            else
+                rm -f "${TMP_FILE}"
+                trap - EXIT
+                echo -e "${RED}✗ Failed to update config (invalid JSON or jq error)${NC}"
+                echo -e "${YELLOW}To use this theme, add or update the following in ${CONFIG_FILE}:${NC}"
+                echo -e '  "theme": "comphy-gruvbox"'
+            fi
         fi
     else
         # jq not available, provide manual instructions
