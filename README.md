@@ -1,11 +1,11 @@
 # CoMPhy Gruvbox Theme for OpenCode
 
-A dark theme for OpenCode inspired by the Gruvbox color palette, featuring Durham purple as the primary accent color. This theme matches the color scheme used in the companion `comphy-gruvbox.nvim` and `obsidian-comphy-gruvbox` themes.
+A dark theme for OpenCode inspired by the Gruvbox color palette, featuring purple as the primary accent color. This theme matches the color scheme used in the companion `comphy-gruvbox.nvim` and `obsidian-comphy-gruvbox` themes.
 
 ## Features
 
 - **Pure black background** (#000000) for maximum contrast
-- **Durham purple accent** (#B347BF) for a distinctive look
+- **Purple accent** (#B347BF) for a distinctive look
 - **Gruvbox-inspired colors** for syntax highlighting
 - **Carefully crafted diff view** with clear add/delete colors
 - **Markdown styling** optimized for readability
@@ -19,7 +19,7 @@ For detailed color source documentation, see [THEME_PALETTE.md](THEME_PALETTE.md
 
 - Background: Pure black (#000000)
 - Text: Off-white (#f5f5f0)
-- Primary Accent: Durham purple (#B347BF)
+- Primary Accent: purple (#B347BF)
 - Error: Red (#FB4834)
 - Success: Green (#50fa7b)
 - Warning: Yellow (#EBCB8B)

@@ -115,12 +115,17 @@ else
 
             # Update theme using jq with temp file cleanup
             TMP_FILE=$(mktemp)
-            if jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" > "${TMP_FILE}" 2>/dev/null; then
+            if JQ_ERROR=$(jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" 2>&1 > "${TMP_FILE}"); then
                 mv "${TMP_FILE}" "${CONFIG_FILE}"
+                rm -f "${TMP_FILE}"
                 echo -e "${GREEN}✓ Config updated to use comphy-gruvbox theme${NC}"
             else
                 rm -f "${TMP_FILE}"
                 echo -e "${RED}✗ Failed to update config (invalid JSON or jq error)${NC}"
+                if [[ -n "${JQ_ERROR}" ]]; then
+                    echo -e "${YELLOW}jq error output:${NC}"
+                    printf '%s\n' "${JQ_ERROR}"
+                fi
                 echo -e "${YELLOW}To use this theme, add or update the following in ${CONFIG_FILE}:${NC}"
                 echo -e '  "theme": "comphy-gruvbox"'
             fi
@@ -139,10 +144,10 @@ echo -e "${GREEN}└────────────────────
 echo ""
 echo -e "${PURPLE}Next steps:${NC}"
 echo -e "  1. Restart OpenCode to apply the theme"
-echo -e "  2. Enjoy your new Durham purple theme! 🎨"
+echo -e "  2. Enjoy your new purple theme! 🎨"
 echo ""
 echo -e "${YELLOW}Theme features:${NC}"
 echo -e "  • Pure black background (#000000)"
-echo -e "  • Durham purple accent (#B347BF)"
+echo -e "  • Purple accent (#B347BF)"
 echo -e "  • Gruvbox-inspired syntax highlighting"
 echo ""

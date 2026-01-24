@@ -47,7 +47,7 @@ These colors are custom-defined for this theme:
 
 | Color Key | Hex Code | Usage | Notes |
 |-----------|----------|-------|-------|
-| `purple` | #B347BF | Primary accent | Durham purple - signature color |
+| `purple` | #B347BF | Primary accent | Purple - signature color |
 | `red` | #FB4834 | Errors, diff deletions | Gruvbox-inspired but adjusted |
 | `aqua` | #81D2CE | Types, numbers, code | Gruvbox aqua variant |
 | `selection` | #392c4b | Text selection | Purple-tinted dark |
@@ -62,7 +62,7 @@ The theme combines:
 1. **Gruvbox foundation**: Warm, retro-inspired base colors for comfort during long coding sessions
 2. **Dracula vibrancy**: Bright accent colors for better syntax distinction
 3. **Nord softness**: Gentle blues and greens for non-critical UI elements
-4. **Durham purple**: Distinctive primary accent color for CoMPhy Lab branding
+4. **Purple**: Distinctive primary accent color for CoMPhy Lab branding
 
 This combination creates a cohesive dark theme optimized for scientific code (Python, C, LaTeX) with excellent readability and visual hierarchy.
 

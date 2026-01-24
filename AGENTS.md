@@ -46,7 +46,7 @@ Manual Validation
 
 ## Theme Design Guidelines
 
-- Follow the Gruvbox-inspired warm palette with Durham purple accents.
+- Follow the Gruvbox-inspired warm palette with purple accents.
 - Maintain WCAG AA contrast for text and UI elements.
 - Keep the theme dark-only; `dark` and `light` values should match.
 - Use semantic tokens (primary, error, diffAdded) instead of raw values.
