@@ -10,7 +10,7 @@ These colors are taken directly from the Gruvbox color palette:
 
 | Color Key | Hex Code | Usage |
 |-----------|----------|-------|
-| `bg0` | #000000 | Pure black background (Gruvbox hard variant, darkened) |
+| `bg0` | #000000 | Inspired by Gruvbox hard variant; set to pure black (`#000000`) for OLED optimization |
 | `bg1` | #1a1a1a | Panel backgrounds |
 | `bg2` | #292929 | Element backgrounds |
 | `bg3` | #404040 | Subtle borders |
@@ -70,7 +70,7 @@ This combination creates a cohesive dark theme optimized for scientific code (Py
 
 - This is a **dark-only theme**. Light mode values in the theme file mirror dark mode for graceful fallback, but the theme is not optimized for light backgrounds.
 - Pure black (#000000) background provides maximum contrast for OLED displays.
-- All color choices maintain WCAG AA contrast ratios for accessibility.
+- Most text and accent tokens meet WCAG AA contrast ratios; `border` and `subtle-border` (mapped to `bg3`) are decorative and fall below 4.5:1.
 
 ## References
 

@@ -15,6 +15,20 @@ OPENCODE_CONFIG_DIR="${HOME}/.config/opencode"
 THEME_DIR="${OPENCODE_CONFIG_DIR}/themes"
 THEME_FILE="${THEME_DIR}/${THEME_NAME}.json"
 CONFIG_FILE="${OPENCODE_CONFIG_DIR}/opencode.json"
+TEMP_THEME=""
+TMP_FILE=""
+
+cleanup_temp_files() {
+    if [[ -n "${TMP_FILE}" ]]; then
+        rm -f "${TMP_FILE}"
+    fi
+
+    if [[ -n "${TEMP_THEME}" ]]; then
+        rm -f "${TEMP_THEME}"
+    fi
+}
+
+trap 'cleanup_temp_files' EXIT
 
 echo -e "${PURPLE}┌─────────────────────────────────────────┐${NC}"
 echo -e "${PURPLE}│  CoMPhy Gruvbox Theme for OpenCode     │${NC}"
@@ -31,7 +45,6 @@ if [[ ! -f "${SOURCE_THEME}" ]]; then
     echo -e "${YELLOW}→ Theme not found locally, downloading from GitHub...${NC}"
     # Create temp file for download
     TEMP_THEME=$(mktemp)
-    trap 'rm -f "$TEMP_THEME"' EXIT
 
     if curl -fsSL "${REMOTE_THEME_URL}" -o "${TEMP_THEME}" 2>/dev/null; then
         SOURCE_THEME="${TEMP_THEME}"
@@ -102,14 +115,11 @@ else
 
             # Update theme using jq with temp file cleanup
             TMP_FILE=$(mktemp)
-            trap 'rm -f "$TMP_FILE"' EXIT
             if jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" > "${TMP_FILE}" 2>/dev/null; then
                 mv "${TMP_FILE}" "${CONFIG_FILE}"
-                trap - EXIT
                 echo -e "${GREEN}✓ Config updated to use comphy-gruvbox theme${NC}"
             else
                 rm -f "${TMP_FILE}"
-                trap - EXIT
                 echo -e "${RED}✗ Failed to update config (invalid JSON or jq error)${NC}"
                 echo -e "${YELLOW}To use this theme, add or update the following in ${CONFIG_FILE}:${NC}"
                 echo -e '  "theme": "comphy-gruvbox"'

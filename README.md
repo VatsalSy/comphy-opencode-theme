@@ -40,14 +40,14 @@ For detailed color source documentation, see [THEME_PALETTE.md](THEME_PALETTE.md
 One-line installation using curl:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/install.sh | bash
 ```
 
 Or download and inspect the script first:
 
 ```bash
 # Download the script
-curl -O https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/install.sh
+curl -O https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/install.sh
 
 # Inspect it (optional but recommended)
 cat install.sh
@@ -63,7 +63,7 @@ Simple one-liner that downloads the theme directly:
 ```bash
 mkdir -p ~/.config/opencode/themes && \
 curl -o ~/.config/opencode/themes/comphy-gruvbox.json \
-  https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json && \
+  https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/.opencode/themes/comphy-gruvbox.json && \
 echo "Theme installed! Add '\"theme\": \"comphy-gruvbox\"' to ~/.config/opencode/opencode.json and restart OpenCode."
 ```
 
@@ -77,11 +77,11 @@ mkdir -p ~/.config/opencode/themes
 
 # Download the theme file directly
 curl -o ~/.config/opencode/themes/comphy-gruvbox.json \
-  https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json
+  https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/.opencode/themes/comphy-gruvbox.json
 
 # Or use wget
 wget -P ~/.config/opencode/themes/ \
-  https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json
+  https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/.opencode/themes/comphy-gruvbox.json
 ```
 
 Then update your OpenCode configuration (`~/.config/opencode/opencode.json`):
@@ -98,10 +98,10 @@ Restart OpenCode to apply the theme.
 
 ```bash
 # Clone the repo
-git clone https://github.com/VatsalSy/CoMPhy-themes.git
+git clone https://github.com/VatsalSy/opencode-comphy-gruvbox.git
 
 # Copy theme to OpenCode config
-cp CoMPhy-themes/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json \
+cp opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json \
    ~/.config/opencode/themes/
 ```
 
@@ -111,14 +111,14 @@ For automatic updates when the theme is modified:
 
 ```bash
 # Clone the repo first
-git clone https://github.com/VatsalSy/CoMPhy-themes.git
+git clone https://github.com/VatsalSy/opencode-comphy-gruvbox.git
 
 # Create symlink
-ln -s "$(pwd)/CoMPhy-themes/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json" \
+ln -s "$(pwd)/opencode-comphy-gruvbox/.opencode/themes/comphy-gruvbox.json" \
       ~/.config/opencode/themes/comphy-gruvbox.json
 
 # Pull updates anytime with
-cd CoMPhy-themes && git pull
+cd opencode-comphy-gruvbox && git pull
 ```
 
 ### Method 4: Project-Specific Theme
