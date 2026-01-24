@@ -4,9 +4,9 @@ This document details the color sources for the CoMPhy Gruvbox theme, showing wh
 
 ## Color Source Attribution
 
-### Gruvbox Colors
+### Base Colors (Gruvbox-inspired)
 
-These colors are taken directly from the Gruvbox color palette:
+These colors are Gruvbox-inspired or modified variants from the palette:
 
 | Color Key | Hex Code | Usage |
 |-----------|----------|-------|

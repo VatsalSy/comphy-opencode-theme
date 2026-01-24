@@ -38,7 +38,7 @@ echo ""
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_THEME="${SCRIPT_DIR}/.opencode/themes/${THEME_NAME}.json"
-REMOTE_THEME_URL="https://raw.githubusercontent.com/VatsalSy/CoMPhy-themes/main/opencode-comphy-gruvbox/.opencode/themes/${THEME_NAME}.json"
+REMOTE_THEME_URL="https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/.opencode/themes/${THEME_NAME}.json"
 
 # Check if source theme exists locally, otherwise download from GitHub
 if [[ ! -f "${SOURCE_THEME}" ]]; then
@@ -117,7 +117,6 @@ else
             TMP_FILE=$(mktemp)
             if JQ_ERROR=$(jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" 2>&1 > "${TMP_FILE}"); then
                 mv "${TMP_FILE}" "${CONFIG_FILE}"
-                rm -f "${TMP_FILE}"
                 echo -e "${GREEN}✓ Config updated to use comphy-gruvbox theme${NC}"
             else
                 rm -f "${TMP_FILE}"
