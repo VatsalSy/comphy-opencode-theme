@@ -52,7 +52,7 @@ if [[ ! -f "${SOURCE_THEME}" ]]; then
     else
         echo -e "${RED}✗ Error: Could not download theme from GitHub${NC}"
         echo -e "${YELLOW}  Check your internet connection or clone the repository:${NC}"
-        echo -e "${YELLOW}  git clone https://github.com/VatsalSy/CoMPhy-themes.git${NC}"
+        echo -e "${YELLOW}  git clone https://github.com/VatsalSy/opencode-comphy-gruvbox.git${NC}"
         exit 1
     fi
 fi
@@ -102,8 +102,12 @@ else
         CURRENT_THEME=$(jq -r '.theme // "not set"' "${CONFIG_FILE}" 2>/dev/null || echo "unknown")
         echo -e "${YELLOW}Current theme: ${CURRENT_THEME}${NC}"
         
-        read -p "Update theme to comphy-gruvbox? [y/N] " -n 1 -r
-        echo
+        if [[ -t 0 ]]; then
+            read -p "Update theme to comphy-gruvbox? [y/N] " -n 1 -r < /dev/tty
+            echo
+        else
+            REPLY="n"
+        fi
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             # Create backup before modifying config
             BACKUP_FILE="${CONFIG_FILE}.bak.$(date +%Y%m%d_%H%M%S)"
