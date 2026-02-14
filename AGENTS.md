@@ -1,4 +1,4 @@
-# OpenCode CoMPhy Gruvbox Theme - Agent Guide
+# OpenCode CoMPhy Theme - Agent Guide
 
 This repository ships a static OpenCode theme plus an install script.
 There is no build system and no automated tests; validate changes
@@ -6,7 +6,7 @@ manually by loading the theme in OpenCode.
 
 ## Repository Layout
 
-- `.opencode/themes/comphy-gruvbox.json`: Source of truth for the theme.
+- `.opencode/themes/comphy-opencode-theme.json`: Source of truth for the theme.
 - `THEME_PALETTE.md`: Color sources and attribution notes.
 - `README.md`: User-facing install and usage documentation.
 - `install.sh`: Automated installer for the theme.
@@ -20,15 +20,15 @@ file as the source artifact and validate it manually.
 
 Build
 
-- None. Editing `.opencode/themes/comphy-gruvbox.json` is the build.
+- None. Editing `.opencode/themes/comphy-opencode-theme.json` is the build.
 
 Lint / Format
 
 - No lint configuration is present.
 - Optional JSON sanity check (requires `jq`):
-  `jq -e . .opencode/themes/comphy-gruvbox.json`
+  `jq -e . .opencode/themes/comphy-opencode-theme.json`
 - Optional JSON sanity check (Python):
-  `python -m json.tool .opencode/themes/comphy-gruvbox.json > /dev/null`
+  `python -m json.tool .opencode/themes/comphy-opencode-theme.json > /dev/null`
 
 Tests
 
@@ -39,8 +39,8 @@ Tests
 Manual Validation
 
 - Local install: `./install.sh`
-- Direct copy: `cp .opencode/themes/comphy-gruvbox.json \
-  ~/.config/opencode/themes/comphy-gruvbox.json`
+- Direct copy: `cp .opencode/themes/comphy-opencode-theme.json \
+  ~/.config/opencode/themes/comphy-opencode-theme.json`
 - Restart OpenCode and confirm the theme loads without errors.
 - Check key views: editor, diff, markdown preview, and prompts.
 
@@ -69,7 +69,7 @@ Manual Validation
 
 ## Theme Editing Workflow
 
-- Start with `.opencode/themes/comphy-gruvbox.json` as the source file.
+- Start with `.opencode/themes/comphy-opencode-theme.json` as the source file.
 - Add new colors only to `defs`; reference them by name in `theme`.
 - Update `THEME_PALETTE.md` with source and rationale for new colors.
 - Update `README.md` when palette, usage, or install steps change.
@@ -122,7 +122,7 @@ Manual Validation
 
 ## Naming Conventions
 
-- Theme id uses `kebab-case`: `comphy-gruvbox`.
+- Theme id uses `kebab-case`: `comphy-opencode-theme`.
 - JSON keys use lower camelCase.
 - Bash variables use uppercase snake case.
 - New files should follow existing naming patterns (kebab-case for

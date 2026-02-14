@@ -1,6 +1,6 @@
 # Theme Palette Documentation
 
-This document details the color sources for the CoMPhy Gruvbox theme, showing which colors come from the original Gruvbox palette and which are borrowed from other sources or custom-defined.
+This document details the color sources for the CoMPhy OpenCode theme, showing which colors come from the original Gruvbox palette and which are borrowed from other sources or custom-defined.
 
 ## Color Source Attribution
 

@@ -10,7 +10,7 @@ PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Configuration
-THEME_NAME="comphy-gruvbox"
+THEME_NAME="comphy-opencode-theme"
 OPENCODE_CONFIG_DIR="${HOME}/.config/opencode"
 THEME_DIR="${OPENCODE_CONFIG_DIR}/themes"
 THEME_FILE="${THEME_DIR}/${THEME_NAME}.json"
@@ -31,14 +31,14 @@ cleanup_temp_files() {
 trap 'cleanup_temp_files' EXIT
 
 echo -e "${PURPLE}┌─────────────────────────────────────────┐${NC}"
-echo -e "${PURPLE}│  CoMPhy Gruvbox Theme for OpenCode     │${NC}"
+echo -e "${PURPLE}│  CoMPhy OpenCode Theme                  │${NC}"
 echo -e "${PURPLE}└─────────────────────────────────────────┘${NC}"
 echo ""
 
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_THEME="${SCRIPT_DIR}/.opencode/themes/${THEME_NAME}.json"
-REMOTE_THEME_URL="https://raw.githubusercontent.com/VatsalSy/opencode-comphy-gruvbox/main/.opencode/themes/${THEME_NAME}.json"
+REMOTE_THEME_URL="https://raw.githubusercontent.com/VatsalSy/comphy-opencode-theme/main/.opencode/themes/${THEME_NAME}.json"
 
 # Check if source theme exists locally, otherwise download from GitHub
 if [[ ! -f "${SOURCE_THEME}" ]]; then
@@ -52,7 +52,7 @@ if [[ ! -f "${SOURCE_THEME}" ]]; then
     else
         echo -e "${RED}✗ Error: Could not download theme from GitHub${NC}"
         echo -e "${YELLOW}  Check your internet connection or clone the repository:${NC}"
-        echo -e "${YELLOW}  git clone https://github.com/VatsalSy/opencode-comphy-gruvbox.git${NC}"
+        echo -e "${YELLOW}  git clone https://github.com/VatsalSy/comphy-opencode-theme.git${NC}"
         exit 1
     fi
 fi
@@ -87,10 +87,10 @@ if [[ ! -f "${CONFIG_FILE}" ]]; then
     cat > "${CONFIG_FILE}" << 'CONFEOF'
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "comphy-gruvbox"
+  "theme": "comphy-opencode-theme"
 }
 CONFEOF
-    echo -e "${GREEN}✓ Config file created with comphy-gruvbox theme${NC}"
+    echo -e "${GREEN}✓ Config file created with comphy-opencode-theme theme${NC}"
 else
     # Config exists, ask if user wants to update it
     echo ""
@@ -103,7 +103,7 @@ else
         echo -e "${YELLOW}Current theme: ${CURRENT_THEME}${NC}"
         
         if [[ -t 0 ]]; then
-            read -p "Update theme to comphy-gruvbox? [y/N] " -n 1 -r < /dev/tty
+            read -p "Update theme to comphy-opencode-theme? [y/N] " -n 1 -r < /dev/tty
             echo
         else
             REPLY="n"
@@ -119,9 +119,9 @@ else
 
             # Update theme using jq with temp file cleanup
             TMP_FILE=$(mktemp)
-            if JQ_ERROR=$(jq '.theme = "comphy-gruvbox"' "${CONFIG_FILE}" 2>&1 > "${TMP_FILE}"); then
+            if JQ_ERROR=$(jq '.theme = "comphy-opencode-theme"' "${CONFIG_FILE}" 2>&1 > "${TMP_FILE}"); then
                 mv "${TMP_FILE}" "${CONFIG_FILE}"
-                echo -e "${GREEN}✓ Config updated to use comphy-gruvbox theme${NC}"
+                echo -e "${GREEN}✓ Config updated to use comphy-opencode-theme theme${NC}"
             else
                 rm -f "${TMP_FILE}"
                 echo -e "${RED}✗ Failed to update config (invalid JSON or jq error)${NC}"
@@ -130,13 +130,13 @@ else
                     printf '%s\n' "${JQ_ERROR}"
                 fi
                 echo -e "${YELLOW}To use this theme, add or update the following in ${CONFIG_FILE}:${NC}"
-                echo -e '  "theme": "comphy-gruvbox"'
+                echo -e '  "theme": "comphy-opencode-theme"'
             fi
         fi
     else
         # jq not available, provide manual instructions
         echo -e "${YELLOW}To use this theme, add or update the following in ${CONFIG_FILE}:${NC}"
-        echo -e '  "theme": "comphy-gruvbox"'
+        echo -e '  "theme": "comphy-opencode-theme"'
     fi
 fi
 
